@@ -1,0 +1,19 @@
+// 词法规则文法文件
+// 格式: # 规则名称
+//        产生式
+
+# KEYWORD
+K -> iK1
+K1 -> fK2 | nK5
+K2 -> ε
+K5 -> tK6
+K6 -> ε
+
+# IDENTIFIER
+I -> aI1 | bI1 | cI1 | dI1 | eI1 | fI1 | gI1 | hI1 | iI1 | jI1 | kI1 | lI1 | mI1 | nI1 | oI1 | pI1 | qI1 | rI1 | sI1 | tI1 | uI1 | vI1 | wI1 | xI1 | yI1 | zI1 | _I1
+I1 -> aI1 | bI1 | cI1 | dI1 | eI1 | fI1 | gI1 | hI1 | iI1 | jI1 | kI1 | lI1 | mI1 | nI1 | oI1 | pI1 | qI1 | rI1 | sI1 | tI1 | uI1 | vI1 | wI1 | xI1 | yI1 | zI1 | 0I1 | 1I1 | 2I1 | 3I1 | 4I1 | 5I1 | 6I1 | 7I1 | 8I1 | 9I1 | _I1 | ε
+
+# NUMBER
+N -> 0N1 | 1N1 | 2N1 | 3N1 | 4N1 | 5N1 | 6N1 | 7N1 | 8N1 | 9N1
+N1 -> 0N1 | 1N1 | 2N1 | 3N1 | 4N1 | 5N1 | 6N1 | 7N1 | 8N1 | 9N1 | .N2 | ε
+N2 -> 0N2 | 1N2 | 2N2 | 3N2 | 4N2 | 5N2 | 6N2 | 7N2 | 8N2 | 9N2 | ε

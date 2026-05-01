@@ -1,0 +1,103 @@
+
+===== 词法分析结果 =====
+==================================================
+行号		类型			内容
+==================================================
+2		KEYWORD		int
+2		IDENTIFIER		x
+2		DELIMITER		,
+2		IDENTIFIER		y
+2		DELIMITER		;
+3		IDENTIFIER		x
+3		OPERATOR		=
+3		CONSTANT		10
+3		DELIMITER		;
+4		IDENTIFIER		y
+4		OPERATOR		=
+4		CONSTANT		20
+4		DELIMITER		;
+5		IDENTIFIER		x
+5		OPERATOR		=
+5		IDENTIFIER		x
+5		OPERATOR		+
+5		IDENTIFIER		y
+5		OPERATOR		*
+5		CONSTANT		2
+5		DELIMITER		;
+==================================================
+
+===== 语法分析过程 =====
+步骤		栈					输入				动作
+====================================================================================================
+0		$0			int id , id ; id = num ; id = num ; id = id + id * num ; $			初始状态
+1		$0 int15			id , id ; id = num ; id = num ; id = id + id * num ; $			移进到状态15
+2		$0 type10			id , id ; id = num ; id = num ; id = id + id * num ; $			归约：type -> int
+3		$0 type10 id24			, id ; id = num ; id = num ; id = id + id * num ; $			移进到状态24
+4		$0 type10 id24 ,40			id ; id = num ; id = num ; id = id + id * num ; $			移进到状态40
+5		$0 type10 id24 ,40 id24			; id = num ; id = num ; id = id + id * num ; $			移进到状态24
+6		$0 type10 id24 ,40 id_list55			; id = num ; id = num ; id = id + id * num ; $			归约：id_list -> id
+7		$0 type10 id_list23			; id = num ; id = num ; id = id + id * num ; $			归约：id_list -> id , id_list
+8		$0 type10 id_list23 ;39			id = num ; id = num ; id = id + id * num ; $			移进到状态39
+9		$0 decl_stmt5			id = num ; id = num ; id = id + id * num ; $			归约：decl_stmt -> type id_list ;
+10		$0 stmt4			id = num ; id = num ; id = id + id * num ; $			归约：stmt -> decl_stmt
+11		$0 stmt4 id11			= num ; id = num ; id = id + id * num ; $			移进到状态11
+12		$0 stmt4 id11 =25			num ; id = num ; id = id + id * num ; $			移进到状态25
+13		$0 stmt4 id11 =25 num21			; id = num ; id = id + id * num ; $			移进到状态21
+14		$0 stmt4 id11 =25 factor19			; id = num ; id = id + id * num ; $			归约：factor -> num
+15		$0 stmt4 id11 =25 term18			; id = num ; id = id + id * num ; $			归约：term -> factor
+16		$0 stmt4 id11 =25 expr41			; id = num ; id = id + id * num ; $			归约：expr -> term
+17		$0 stmt4 id11 =25 expr41 ;56			id = num ; id = id + id * num ; $			移进到状态56
+18		$0 stmt4 assign_stmt6			id = num ; id = id + id * num ; $			归约：assign_stmt -> id = expr ;
+19		$0 stmt4 stmt4			id = num ; id = id + id * num ; $			归约：stmt -> assign_stmt
+20		$0 stmt4 stmt4 id11			= num ; id = id + id * num ; $			移进到状态11
+21		$0 stmt4 stmt4 id11 =25			num ; id = id + id * num ; $			移进到状态25
+22		$0 stmt4 stmt4 id11 =25 num21			; id = id + id * num ; $			移进到状态21
+23		$0 stmt4 stmt4 id11 =25 factor19			; id = id + id * num ; $			归约：factor -> num
+24		$0 stmt4 stmt4 id11 =25 term18			; id = id + id * num ; $			归约：term -> factor
+25		$0 stmt4 stmt4 id11 =25 expr41			; id = id + id * num ; $			归约：expr -> term
+26		$0 stmt4 stmt4 id11 =25 expr41 ;56			id = id + id * num ; $			移进到状态56
+27		$0 stmt4 stmt4 assign_stmt6			id = id + id * num ; $			归约：assign_stmt -> id = expr ;
+28		$0 stmt4 stmt4 stmt4			id = id + id * num ; $			归约：stmt -> assign_stmt
+29		$0 stmt4 stmt4 stmt4 id11			= id + id * num ; $			移进到状态11
+30		$0 stmt4 stmt4 stmt4 id11 =25			id + id * num ; $			移进到状态25
+31		$0 stmt4 stmt4 stmt4 id11 =25 id42			+ id * num ; $			移进到状态42
+32		$0 stmt4 stmt4 stmt4 id11 =25 factor19			+ id * num ; $			归约：factor -> id
+33		$0 stmt4 stmt4 stmt4 id11 =25 term18			+ id * num ; $			归约：term -> factor
+34		$0 stmt4 stmt4 stmt4 id11 =25 expr41			+ id * num ; $			归约：expr -> term
+35		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27			id * num ; $			移进到状态27
+36		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 id42			* num ; $			移进到状态42
+37		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 factor19			* num ; $			归约：factor -> id
+38		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 term43			* num ; $			归约：term -> factor
+39		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 term43 *31			num ; $			移进到状态31
+40		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 term43 *31 num21			; $			移进到状态21
+41		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 term43 *31 factor47			; $			归约：factor -> num
+42		$0 stmt4 stmt4 stmt4 id11 =25 expr41 +27 term43			; $			归约：term -> term * factor
+43		$0 stmt4 stmt4 stmt4 id11 =25 expr41			; $			归约：expr -> expr + term
+44		$0 stmt4 stmt4 stmt4 id11 =25 expr41 ;56			$			移进到状态56
+45		$0 stmt4 stmt4 stmt4 assign_stmt6			$			归约：assign_stmt -> id = expr ;
+46		$0 stmt4 stmt4 stmt4 stmt4			$			归约：stmt -> assign_stmt
+47		$0 stmt4 stmt4 stmt4 stmt_list22			$			归约：stmt_list -> stmt
+48		$0 stmt4 stmt4 stmt_list22			$			归约：stmt_list -> stmt stmt_list
+49		$0 stmt4 stmt_list22			$			归约：stmt_list -> stmt stmt_list
+50		$0 stmt_list3			$			归约：stmt_list -> stmt stmt_list
+51		$0 program2			$			归约：program -> stmt_list
+52		$0 S1			$			归约：S -> program
+53		$0 S1			$			接受！
+
+===== 语义分析结果 =====
+
+----- 符号表 -----
+名称		类型		值		行号
+--------------------------------------------------
+x		int		60		2
+y		int		20		2
+
+----- 中间代码 -----
+声明变量: int x
+声明变量: int y
+x = 10
+y = 20
+x = 60
+
+===== 最终结果 =====
+YES - 语义分析通过

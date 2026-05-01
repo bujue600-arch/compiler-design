@@ -1,0 +1,13 @@
+// 语义文法文件 (属性文法)
+// 格式: 产生式 { 语义动作 }
+// 语义动作中可以使用属性: 符号.属性
+
+E -> E + T { E.val = E1.val + T.val }
+E -> E - T { E.val = E1.val - T.val }
+E -> T { E.val = T.val }
+T -> T * F { T.val = T1.val * F.val }
+T -> T / F { T.val = T1.val / F.val }
+T -> F { T.val = F.val }
+F -> ( E ) { F.val = E.val }
+F -> id { F.val = id.lexval }
+F -> num { F.val = num.lexval }

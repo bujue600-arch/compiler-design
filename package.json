@@ -1,0 +1,17 @@
+{
+  "name": "compiler-design",
+  "version": "1.0.0",
+  "description": "编译原理课程设计 - 词法分析、LR(1)语法分析、语义分析",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "lex": "node src/index.js --lex",
+    "parse": "node src/index.js --parse",
+    "semantic": "node src/index.js --semantic",
+    "test": "node src/test.js"
+  },
+  "keywords": ["compiler", "lexer", "parser", "lr1", "semantic"],
+  "author": "",
+  "license": "ISC"
+}

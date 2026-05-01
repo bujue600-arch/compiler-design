@@ -1,0 +1,18 @@
+// 语法文法文件 (上下文无关文法)
+// 格式: 左部 -> 右部1 | 右部2 | ...
+// 使用 id 表示标识符，num 表示数字常量
+
+S -> program
+program -> stmt_list
+stmt_list -> stmt stmt_list | stmt
+stmt -> decl_stmt | assign_stmt | expr_stmt | if_stmt | while_stmt
+decl_stmt -> type id_list ;
+type -> int | float | double
+id_list -> id , id_list | id
+assign_stmt -> id = expr ;
+expr_stmt -> expr ;
+expr -> expr + term | expr - term | term
+term -> term * factor | term / factor | factor
+factor -> ( expr ) | id | num
+if_stmt -> if ( expr ) stmt else stmt | if ( expr ) stmt
+while_stmt -> while ( expr ) stmt
